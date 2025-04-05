@@ -1,0 +1,10 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+# dotenv file
+*.env
+# packaging
+build/
+dist/
+*.egg-info/
+*system_context.json
