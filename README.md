@@ -15,10 +15,13 @@ Ion is a CLI-based AI-powered assistant that executes OS-level commands based on
 ## Installation
 
 To install Ion, use the following command:
+You'll need to install python, and pip before running the pip command.
+After installing both, go to your terminal and type/copy paste the command below.
 
 ```sh
 pip install ion
 ```
+
 
 ### Setup
 
