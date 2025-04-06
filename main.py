@@ -140,7 +140,7 @@ def is_safe_command(cmd: str) -> bool:
     return not any(re.search(p, cmd) for p in patterns)
 
 def main():
-    console.print(Panel("[bold blue] ION[/bold blue]", expand=False, subtitle="Type commands like a boss"))
+    console.print(Panel("[bold blue] ION SHELL ASSISTANT[/bold blue]", expand=False, subtitle="Type commands"))
     while True:
         user_input = Prompt.ask("[bold green]Ask me to do something[/bold green] (or 'exit')").strip()
         if user_input.lower() in ("exit", "quit"):
