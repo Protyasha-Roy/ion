@@ -22,7 +22,7 @@ CTX_FILE   = "system_context.json"
 
 console = Console()
 if not API_KEY:
-    console.print("[bold red]❌ ERROR: No API key found![/bold red] "
+    console.print("[bold red] ERROR: No API key found![/bold red] "
                   "Set GEMINI_API_KEY in your environment or in a .env file.")
     exit(1)
 # ────────────────────────────────────────────────────────────────────────────────
@@ -140,11 +140,11 @@ def is_safe_command(cmd: str) -> bool:
     return not any(re.search(p, cmd) for p in patterns)
 
 def main():
-    console.print(Panel("[bold blue]🤖 AI Shell Assistant[/bold blue]", expand=False, subtitle="Type commands like a boss"))
+    console.print(Panel("[bold blue] ION[/bold blue]", expand=False, subtitle="Type commands like a boss"))
     while True:
         user_input = Prompt.ask("[bold green]Ask me to do something[/bold green] (or 'exit')").strip()
         if user_input.lower() in ("exit", "quit"):
-            console.print("[bold red]👋 Goodbye![/bold red]")
+            console.print("[bold red] Goodbye![/bold red]")
             break
 
         with Progress(
@@ -156,26 +156,26 @@ def main():
             command = get_command_from_gemini(user_input)
 
         if command == "__QUOTA_EXCEEDED__":
-            console.print("[bold red]🚫 Quota exceeded! Try again later.[/bold red]")
+            console.print("[bold red] Quota exceeded! Try again later.[/bold red]")
             continue
         if command == "__INVALID_KEY__":
-            console.print("[bold red]❌ Invalid API key! Update your key.[/bold red]")
+            console.print("[bold red] Invalid API key! Update your key.[/bold red]")
             break
         if command.startswith("Error:"):
             console.print(f"[bold red]{command}[/bold red]")
             continue
 
-        console.print(Panel.fit(f"[cyan]{command}[/cyan]", title="💬 AI Response"))
+        console.print(Panel.fit(f"[cyan]{command}[/cyan]", title="Command to execute"))
 
         if not Confirm.ask("⚡ Execute?", default=False):
-            console.print("[bold yellow]⚠️  Canceled.[/bold yellow]")
+            console.print("[bold yellow]  Canceled.[/bold yellow]")
             continue
 
         if is_safe_command(command):
             with console.status("[bold green]⚙️  Executing...[/bold green]", spinner="dots"):
                 try:
                     result = subprocess.run(command, shell=True, check=True, capture_output=True, text=True)
-                    console.print("[bold green]✅ Successfully executed.[/bold green]")
+                    console.print("[bold green] Successfully executed.[/bold green]")
                     if result.stdout:
                         console.print(Panel(result.stdout.strip(), title="Output"))
                     if result.stderr:
@@ -183,7 +183,7 @@ def main():
                 except subprocess.CalledProcessError as e:
                     console.print(f"[bold red]Execution error:[/bold red] {e}")
         else:
-            console.print("[bold red]⚠️ Unsafe command blocked![/bold red]")
+            console.print("[bold red] Unsafe command blocked![/bold red]")
 
 if __name__ == "__main__":
     main()
