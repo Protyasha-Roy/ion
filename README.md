@@ -6,22 +6,25 @@ Ion is a CLI-based AI-powered assistant that executes OS-level commands based on
 
 ## Features
 
-- Generates shell commands using Google's Gemini API.
-- Compatible with Windows, macOS, and Linux.
-- Runs locally with user-provided API keys.
-- Automatically detects installed applications and user directories.
-- Provides a safe execution environment with command validation.
+Give it any task to do, it will generate commands to execute the task. Works well with gemini-1.5-flash model. But works better with gemini 2.5-pro model.
+Some prompt(task) examples to give:
+- Open/close 'app name'.
+- Close all opened apps at once.
+- What's the filename of the first image in downloads?
+- Search teapot on google.
+- Go to chatgpt.com in brave browser.
+- And anything you wish it to do. 
+
+In future I will be integrating a better file/folder indexing system. Memory management, so it remembers previous texts in the same conversation.
+And hoping to create a GUI popup for it with speech recognition as well.
 
 ## Installation
 
-To install Ion, use the following command:
-You'll need to install python, and pip before running the pip command.
-After installing both, go to your terminal and type/copy paste the command below.
+To use Ion you need to download and install python. During installation make sure to check the 'ADD TO PATH' option. After installing python, go to your terminal and type/copy paste the command below.
 
 ```sh
 pip install ion
 ```
-
 
 ### Setup
 
@@ -29,13 +32,13 @@ Before running Ion, you need to configure your API key and model:
 
 1. **Obtain a Gemini API Key:**
 
-   - Go to [Google AI](https://ai.google.dev) and sign in.
-   - Navigate to API Keys and generate a new key.
-   - Copy the API key for later use.
+   - Go to [Google AI Studio](https://aistudio.google.com/apikey) and sign in.
+   - Generate an API-key here.
+   - Copy and the API key for later use.
 
 2. **Set Up Your Environment File:**
 
-   - Locate the `.env.example` file in the repository.
+   - Locate the `.env.example` file in the repository(in the folder you installed ion).
    - Rename it to `.env`.
    - Open the `.env` file and update it with your API key and model:
      ```sh
@@ -44,8 +47,10 @@ Before running Ion, you need to configure your API key and model:
      ```
    - Save the file.
 
-3. **Run the Assistant:**
+You can replace the model to be gemini 2.5 pro with your own api key as well.
 
+3. **Run the Assistant:**
+Now go to the terminal again and type:
    ```sh
    ion
    ```
@@ -56,13 +61,16 @@ Once Ion is running, you can use it to execute commands with natural language in
 
 ```sh
 $ ion
-🤖 AI Shell Assistant
+ AI Shell Assistant
 > Open Chrome
 > Run VS Code
-> Find my downloads folder
+> Find 'folder name'
+> Create a new note in notepad++
+> Anything you can think of...
 ```
 
 Ion will generate a corresponding system command and prompt you to confirm execution.
+Click 'y' for accepteing the command and 'n' for cancelling the command.
 
 ### Example Commands
 
@@ -85,9 +93,10 @@ Contributions are welcome! If you'd like to contribute:
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
 
+Will not be able to accept contributions until next month.
+
 ## License
 
 This project is licensed under the [GPL-3.0 + Non-Commercial Clause](LICENSE).
 
 It is free to use for personal and non-commercial purposes only.
-
